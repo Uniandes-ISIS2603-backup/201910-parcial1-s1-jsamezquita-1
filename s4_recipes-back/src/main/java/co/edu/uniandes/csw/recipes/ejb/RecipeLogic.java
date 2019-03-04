@@ -32,16 +32,14 @@ public class RecipeLogic {
         if (recipeEntity.getName().length()>30||recipeEntity.getName()==null||recipeEntity.getName().isEmpty()){
             throw new BusinessLogicException("El nombre de la receta inválido");
         }
-        if (persistence.find(bookEntity.getIsbn()) != null) {
-            throw new BusinessLogicException("El ISBN ya existe");
+        if (persistence.findByName(recipeEntity.getName()) != null) {
+            throw new BusinessLogicException("El nombre ya existe");
         }
-        if (recipeEntity.getDesciption()) {
-            throw new BusinessLogicException("El ISBN es inválido");
+        if (recipeEntity.getDescription().length()>150||recipeEntity.getDescription()==null||recipeEntity.getDescription().isEmpty()) {
+            throw new BusinessLogicException("La descripcion es inválida");
         }
-        persistence.create(bookEntity);
+        persistence.create(recipeEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del libro");
-        return bookEntity;
+        return recipeEntity;
     }
-
-
 }
