@@ -38,6 +38,9 @@ public class RecipeLogic {
         if (recipeEntity.getDescription().length()>150||recipeEntity.getDescription()==null||recipeEntity.getDescription().isEmpty()) {
             throw new BusinessLogicException("La descripcion es inválida");
         }
+        if(recipeEntity.getIngredients().isEmpty()){
+            throw new BusinessLogicException("La receta debe tener al menos un ingrediente");
+        }
         persistence.create(recipeEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del libro");
         return recipeEntity;
