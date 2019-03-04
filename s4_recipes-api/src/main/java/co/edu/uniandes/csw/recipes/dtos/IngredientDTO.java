@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.recipes.dtos;
 
+import co.edu.uniandes.csw.recipes.entities.IngredientEntity;
+
 /**
  *
  * @author estudiante
@@ -12,9 +14,30 @@ package co.edu.uniandes.csw.recipes.dtos;
 public class IngredientDTO {
     
     private String name;
-    private String description;
+    private Long calories;
     private Long id;
 
+    public IngredientDTO()
+    {
+        
+    }
+    
+    public IngredientDTO(IngredientEntity ingredient) 
+    {
+    this.id = ingredient.getId();
+    this.name = ingredient.getName();
+    this.calories = ingredient.getCalories();
+    }
+    
+    public IngredientEntity toEntity() 
+    {
+    IngredientEntity entity = new IngredientEntity();
+    entity.setId(this.id);
+    entity.setName(this.name);   
+    entity.setCalories(this.calories);		
+    return entity;
+    }
+    
     /**
      * @return the name
      */
@@ -30,17 +53,17 @@ public class IngredientDTO {
     }
 
     /**
-     * @return the description
+     * @return the calories
      */
-    public String getDescription() {
-        return description;
+    public Long getCalories() {
+        return calories;
     }
 
     /**
-     * @param description the description to set
+     * @param calories the calories to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCalories(Long calories) {
+        this.calories = calories;
     }
 
     /**

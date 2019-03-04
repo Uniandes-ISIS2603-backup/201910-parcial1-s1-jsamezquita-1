@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.recipes.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,6 +18,10 @@ import javax.persistence.Entity;
 public class RecipeEntity extends BaseEntity {
     private String name;
     private String description;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "recipe", fetch=FetchType.LAZY)
+    private IngredientEntity ingredient;
     
     public RecipeEntity(){
     
